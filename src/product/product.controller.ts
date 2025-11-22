@@ -1,46 +1,45 @@
 import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Query,
-} from '@nestjs/common';
-import { ProductService } from './product.service';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
-import { GetProductByIdDto } from './dto/get-product-by-id.dto';
-import { AllowAnonymous } from '@thallesp/nestjs-better-auth';
+	Controller,
+	Get,
+	Post,
+	Body,
+	Patch,
+	Param,
+	Delete,
+} from "@nestjs/common";
+import { ProductService } from "./product.service";
+import { CreateProductDto } from "./dto/create-product.dto";
+import { UpdateProductDto } from "./dto/update-product.dto";
+// import { GetProductByIdDto } from "./dto/get-product-by-id.dto";
+import { AllowAnonymous } from "@thallesp/nestjs-better-auth";
 
-@Controller('product')
+@Controller("product")
 export class ProductController {
-  constructor(private readonly productService: ProductService) {}
+	constructor(private readonly productService: ProductService) {}
 
-  @Post()
-  create(@Body() createProductDto: CreateProductDto) {
-    return this.productService.create(createProductDto);
-  }
+	@Post()
+	create(@Body() createProductDto: CreateProductDto) {
+		return this.productService.create(createProductDto);
+	}
 
-  @Get()
-  @AllowAnonymous()
-  findAll() {
-    return this.productService.findAll();
-  }
+	@Get()
+	@AllowAnonymous()
+	findAll() {
+		return this.productService.findAll();
+	}
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productService.findOne(+id);
-  }
+	@Get(":id")
+	findOne(@Param("id") id: string) {
+		return this.productService.findOne(+id);
+	}
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.productService.update(+id, updateProductDto);
-  }
+	@Patch(":id")
+	update(@Param("id") id: string, @Body() updateProductDto: UpdateProductDto) {
+		return this.productService.update(+id, updateProductDto);
+	}
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productService.remove(+id);
-  }
+	@Delete(":id")
+	remove(@Param("id") id: string) {
+		return this.productService.remove(+id);
+	}
 }
