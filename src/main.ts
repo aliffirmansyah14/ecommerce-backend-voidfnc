@@ -4,7 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  // biar jadi http://addess/api/*
   app.setGlobalPrefix('api');
   // class validator
   app.useGlobalPipes(
