@@ -12,6 +12,7 @@ import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { GetProductByIdDto } from './dto/get-product-by-id.dto';
+import { AllowAnonymous } from '@thallesp/nestjs-better-auth';
 
 @Controller('product')
 export class ProductController {
@@ -23,6 +24,7 @@ export class ProductController {
   }
 
   @Get()
+  @AllowAnonymous()
   findAll() {
     return this.productService.findAll();
   }
